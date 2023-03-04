@@ -1,1 +1,2 @@
-# vim_config
+# store my .vimrc on github
+
