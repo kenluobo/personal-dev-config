@@ -1,2 +1,2 @@
-# store my .vimrc on github
+# store my .vimrc on github.
 
