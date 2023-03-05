@@ -1,8 +1,6 @@
+set modelines=0		" CVE-2007-2438 
 " Configuration file for vim
-set modelines=0		" CVE-2007-2438
 
-" Normally we use vim-extensions. If you want true vi-compatibility
-" remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
 
@@ -72,6 +70,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'preservim/nerdcommenter'
 Plug 'Yggdroot/indentLine'
+Plug 'https://github.com/joshdick/onedark.vim.git'
 
 call plug#end()
 
@@ -92,36 +91,37 @@ let g:ycm_min_num_of_chars_for_completion=2
 let g:ycm_autocloase_preview_window_after_completion=1
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_show_diagnostics_ui=0                                   " 禁用语法检查
+let g:ycm_key_list_stop_completion=['<CR>']
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>" |            " 回车即选中当前项
 nnoremap <c-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>|     " 跳转到定义处
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 inoremap <expr> <Down> pumvisible() ? '\<C-n>' : '\<Down>'
 inoremap <expr> <Up> pumvisible() ? '\<C-p>' : '\<Up>'
 
-hi link YcmInlayHint Comment
-call prop_type_add( 'YCM_INLAY_Type', #{ highlight: 'Comment' } )
-
-let g:ycm_anable_semantic_highlighting=1
-let MY_YCM_HIGHLIGHT_GROUP = {
-      \   'typeParameter': 'PreProc',
-      \   'parameter': 'Normal',
-      \   'variable': 'Normal',
-      \   'property': 'Normal',
-      \   'enumMember': 'Normal',
-      \   'event': 'Special',
-      \   'member': 'Normal',
-      \   'method': 'Normal',
-      \   'class': 'Special',
-      \   'namespace': 'Special',
-      \ }
-
-for tokenType in keys( MY_YCM_HIGHLIGHT_GROUP )
-  call prop_type_add( 'YCM_HL_' . tokenType,
-                    \ { 'highlight': MY_YCM_HIGHLIGHT_GROUP[ tokenType ] } )
-endfor
-
-let g:ycm_enable_inlay_hints=1
-let g:ycm_clear_inlay_hints_in_insert_mode=1
+" hi link YcmInlayHint Comment
+" call prop_type_add( 'YCM_INLAY_Type', #{ highlight: 'Comment' } )
+"
+" let g:ycm_anable_semantic_highlighting=1
+" let MY_YCM_HIGHLIGHT_GROUP = {
+"       \   'typeParameter': 'PreProc',
+"       \   'parameter': 'Normal',
+"       \   'variable': 'Normal',
+"       \   'property': 'Normal',
+"       \   'enumMember': 'Normal',
+"       \   'event': 'Special',
+"       \   'member': 'Normal',
+"       \   'method': 'Normal',
+"       \   'class': 'Special',
+"       \   'namespace': 'Special',
+"       \ }
+"
+" for tokenType in keys( MY_YCM_HIGHLIGHT_GROUP )
+"   call prop_type_add( 'YCM_HL_' . tokenType,
+"                     \ { 'highlight': MY_YCM_HIGHLIGHT_GROUP[ tokenType ] } )
+" endfor
+"
+" let g:ycm_enable_inlay_hints=1
+" let g:ycm_clear_inlay_hints_in_insert_mode=1
 
 " indent_guides
 " let g:indent_guides_enable_on_vim_startup=1                         " 随 vim 自启动
@@ -148,5 +148,13 @@ let NERDTreeWinPos="right"
 " let NERDTreeWinSize=32
 let NERDTreeAutoDeleteBuffer=1                      " 删除文件是自动删除buffer
 
+" oneDark theme 
+colorscheme onedark 
+
+" auto-pair 
+let g:AutoPairs= {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+" au FileType rust let b:AutoPairs = AutoPairsDefine({'\w\zs<': '>'})
+au FileType html let b:AutoPairs=AutoPairsDefine({'<!--' : '-->'})
+au FileType * let b:AutoPairs=AutoPairsDefine({'\w<':'>'})
 
 
