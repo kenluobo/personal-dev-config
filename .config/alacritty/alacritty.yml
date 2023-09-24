@@ -1,0 +1,40 @@
+font:
+  normal:
+    family: "Andale Mono"
+    style: Regular
+
+  blod:
+    family: "Andale Mono"
+    style: Blod
+
+  italic:
+    family: "Andale Mono"
+    style: Italic
+
+  bold_italic:
+    family: "Andale Mono"
+    style: Bold Italic
+
+  size: 14
+
+  offset: 
+    x: 1
+    y: 0
+
+env:
+  TERM: xterm-256color
+
+window:
+  padding:
+    x: 1
+    y: 1
+  
+  # dynamic_padding: true
+
+  dynamic_title: true
+
+scrolling:
+  history: 10000
+
+
+
