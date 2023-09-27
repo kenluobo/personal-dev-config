@@ -1,2 +1,2 @@
-# store my .vimrc on github.
+# store personal configure file of some software
 
