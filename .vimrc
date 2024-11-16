@@ -71,6 +71,8 @@ Plug 'derekwyatt/vim-fswitch'
 Plug 'preservim/nerdcommenter'
 Plug 'Yggdroot/indentLine'
 Plug 'https://github.com/joshdick/onedark.vim.git'
+Plug 'vim-autoformat/vim-autoformat'
+Plug 'sbdchd/neoformat'
 
 call plug#end()
 
@@ -90,7 +92,7 @@ let g:ycm_collect_identifiers_from_comments_add_strings = 0
 let g:ycm_min_num_of_chars_for_completion=2
 let g:ycm_autocloase_preview_window_after_completion=1
 let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_show_diagnostics_ui=0                                   " 禁用语法检查
+let g:ycm_show_diagnostics_ui=1                                   " 禁用语法检查
 let g:ycm_key_list_stop_completion=['<CR>']
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>" |            " 回车即选中当前项
 nnoremap <c-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>|     " 跳转到定义处
@@ -157,4 +159,6 @@ let g:AutoPairs= {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```
 au FileType html let b:AutoPairs=AutoPairsDefine({'<!--' : '-->'})
 au FileType * let b:AutoPairs=AutoPairsDefine({'\w<':'>'})
 
+" use vim-autoformat to call clang-format 
+autocmd FileType c,cpp,hpp,h,json,js,python autocmd BufWritePre * :Neoformat
 
